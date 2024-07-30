@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,6 +7,16 @@ import WebApp from '@twa-dev/sdk'
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const [test, setText] = useState<string>();
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(async (res) => {
+      const data = await res.json();
+
+      setText(data);
+    })
+  }, []);
 
   return (
     <>
@@ -21,7 +31,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          count is {test}
         </button>
       </div>
         {/* Here we add our button with alert callback */}
