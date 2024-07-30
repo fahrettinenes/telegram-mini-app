@@ -8,7 +8,7 @@ import WebApp from '@twa-dev/sdk'
 function App() {
   const [count, setCount] = useState(0);
 
-  const [test, setText] = useState<string>();
+  const [test, setText] = useState<any>();
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
     .then(async (res) => {
@@ -31,7 +31,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {test}
+          count is {test?.length >= 1 ? test[0].userId : ""}
         </button>
       </div>
         {/* Here we add our button with alert callback */}
